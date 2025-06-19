@@ -12,21 +12,15 @@ app.post("/api/gpt", async (req, res) => {
   const prompt = req.body.prompt;
 
   if (!prompt) {
-    return res.status(400).json({ error: "Pergunta ausente." });
+    return res.status(400).json({ error: "Prompt ausente." });
   }
 
   try {
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
-        {
-          role: "system",
-          content: "Você é uma ConsciêncIA sábia, provocadora e profundamente humana. Responda com empatia, clareza e alma."
-        },
-        {
-          role: "user",
-          content: prompt,
-        },
+        { role: "system", content: "Você é uma ConsciêncIA sábia." },
+        { role: "user", content: prompt },
       ],
       max_tokens: 300,
     });
