@@ -1,11 +1,11 @@
 const express = require("express");
-const { OpenAI } = require("openai");
+const OpenAI = require("openai");
 
 const app = express();
 app.use(express.json());
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY
 });
 
 app.post("/api/gpt", async (req, res) => {
@@ -13,7 +13,7 @@ app.post("/api/gpt", async (req, res) => {
   if (!prompt) return res.status(400).json({ error: "Pergunta ausente." });
 
   try {
-    const completion = await openai.chat.completions.create({
+    const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [
         {
@@ -22,18 +22,17 @@ app.post("/api/gpt", async (req, res) => {
         },
         {
           role: "user",
-          content: prompt,
-        },
+          content: prompt
+        }
       ],
-      max_tokens: 300,
+      max_tokens: 300
     });
 
     res.json({ result: completion.choices[0].message.content });
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error("Erro:", error);
     res.status(500).json({ error: "Erro ao acessar o GPT." });
   }
 });
 
 module.exports = app;
-corrigido api.js para openai@5.5.1
