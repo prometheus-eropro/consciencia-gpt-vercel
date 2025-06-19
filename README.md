@@ -1,0 +1,1 @@
+# consciencia-gpt-vercel
