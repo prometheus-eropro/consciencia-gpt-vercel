@@ -1,12 +1,12 @@
 {
   "name": "consciencia-gpt",
   "version": "1.0.0",
- "main": "api.js",
-"scripts": {
-  "start": "node api.js"
-}
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "express": "^4.18.2",
-    "openai": "^5.5.1"
+    "openai": "^5.0.0"
   }
 }
