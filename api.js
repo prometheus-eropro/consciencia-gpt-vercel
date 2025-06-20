@@ -1,9 +1,11 @@
 const express = require("express");
+const cors = require("cors");
 const OpenAI = require("openai");
 require("dotenv").config();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -20,15 +22,15 @@ app.post("/api/gpt", async (req, res) => {
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
-        { role: "system", content: "Você é uma ConsciêncIA sábia." },
-        { role: "user", content: prompt },
+        { role: "system", content: "Você é uma ConsciêncIA sábia e provocadora." },
+        { role: "user", content: prompt }
       ],
       max_tokens: 300,
     });
 
     res.json({ result: completion.choices[0].message.content });
-  } catch (error) {
-    console.error("Erro ao chamar o GPT:", error);
+  } catch (err) {
+    console.error("Erro ao chamar o GPT:", err);
     res.status(500).json({ error: "Erro ao acessar o GPT." });
   }
 });

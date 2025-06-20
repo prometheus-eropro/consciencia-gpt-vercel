@@ -1,7 +1,7 @@
 require("dotenv").config();
-const app = require("./api.js");
+const app = require("./api");
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
+  console.log(`Servidor ConsciêncIA Vercel rodando na porta ${port}`);
 });
