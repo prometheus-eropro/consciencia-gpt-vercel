@@ -8,8 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 const openai = new OpenAI({
-  apiKey: process.env.ABRIR_CHAVE_API_AI,
-,
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 app.post("/api/gpt", async (req, res) => {
